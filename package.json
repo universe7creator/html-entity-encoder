@@ -1,0 +1,14 @@
+{
+  "name": "html-entity-encoder",
+  "version": "1.0.0",
+  "description": "Convert between plain text and HTML entities instantly. Encode special characters for web development and decode HTML entities back to readable text.",
+  "main": "api/process.js",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "vercel-build": "echo 'Build complete'"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

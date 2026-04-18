@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Entity Encoder/Decoder Pro</title>
+    <meta name="description" content="Convert between plain text and HTML entities instantly. Encode special characters for web development.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .gradient-text { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); }
+        .glow { box-shadow: 0 0 40px rgba(99, 102, 241, 0.3); }
+        .animate-fade-in { animation: fadeIn 0.8s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        textarea { resize: vertical; }
+        .btn-glow:hover { box-shadow: 0 0 30px rgba(99, 102, 241, 0.5); transform: translateY(-2px); }
+    </style>
+</head>
+<body class="bg-[#0a0a0a] text-white min-h-screen">
+    <!-- Hero -->
+    <section class="relative py-20 px-4">
+        <div class="absolute inset-0 bg-gradient-to-b from-indigo-900/20 via-transparent to-transparent"></div>
+        <div class="max-w-6xl mx-auto relative">
+            <div class="text-center animate-fade-in">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-sm mb-6">
+                    <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+                    Developer Essential Tool
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                    HTML Entity<br><span class="gradient-text">Encoder/Decoder</span>
+                </h1>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-8">
+                    Convert between plain text and HTML entities instantly. Perfect for web developers, content creators, and sanitizing user input.
+                </p>
+                <div class="flex gap-4 justify-center">
+                    <a href="#demo" class="px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl font-semibold btn-glow transition-all">
+                        Try It Free
+                    </a>
+                    <a href="/buy" class="px-8 py-4 border border-white/20 rounded-xl font-semibold hover:bg-white/5 transition-all">
+                        Buy Pro $19
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="glass rounded-2xl p-8 glow">
+                <h2 class="text-2xl font-bold mb-6 text-center">Live Demo</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-2">Input Text</label>
+                        <textarea id="input" class="w-full h-48 bg-black/50 border border-white/10 rounded-xl p-4 mono text-sm focus:border-indigo-500 focus:outline-none" placeholder="Enter text to encode or decode..."></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-2">Result</label>
+                        <textarea id="output" readonly class="w-full h-48 bg-black/50 border border-white/10 rounded-xl p-4 mono text-sm text-gray-300" placeholder="Result will appear here..."></textarea>
+                    </div>
+                </div>
+                <div class="flex gap-4 mt-6 justify-center">
+                    <button onclick="encode()" class="px-6 py-3 bg-indigo-500 hover:bg-indigo-600 rounded-xl font-medium transition-all flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Encode
+                    </button>
+                    <button onclick="decode()" class="px-6 py-3 bg-purple-500 hover:bg-purple-600 rounded-xl font-medium transition-all flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        Decode
+                    </button>
+                    <button onclick="clearAll()" class="px-6 py-3 border border-white/20 hover:bg-white/5 rounded-xl font-medium transition-all">
+                        Clear
+                    </button>
+                </div>
+                <div id="stats" class="mt-4 text-center text-sm text-gray-500"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Features</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass rounded-xl p-6 hover:bg-white/5 transition-all">
+                    <div class="w-12 h-12 bg-indigo-500/20 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Secure Encoding</h3>
+                    <p class="text-gray-400 text-sm">Convert special characters to HTML entities to prevent XSS attacks and ensure safe rendering.</p>
+                </div>
+                <div class="glass rounded-xl p-6 hover:bg-white/5 transition-all">
+                    <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Full Entity Support</h3>
+                    <p class="text-gray-400 text-sm">Supports all HTML entities including named (&amp;), decimal (&#38;), and hexadecimal (&#x26;) formats.</p>
+                </div>
+                <div class="glass rounded-xl p-6 hover:bg-white/5 transition-all">
+                    <div class="w-12 h-12 bg-pink-500/20 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Instant Processing</h3>
+                    <p class="text-gray-400 text-sm">Real-time encoding and decoding with no server calls needed for the Pro version.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Common Entities -->
+    <section class="py-16 px-4 bg-white/5">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-2xl font-bold text-center mb-8">Common HTML Entities</h2>
+            <div class="glass rounded-xl overflow-hidden">
+                <table class="w-full text-sm">
+                    <thead class="bg-white/10">
+                        <tr>
+                            <th class="px-4 py-3 text-left font-medium">Character</th>
+                            <th class="px-4 py-3 text-left font-medium">Named</th>
+                            <th class="px-4 py-3 text-left font-medium">Decimal</th>
+                            <th class="px-4 py-3 text-left font-medium">Hex</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/10">
+                        <tr class="hover:bg-white/5"><td class="px-4 py-2">&amp;</td><td class="px-4 py-2 mono">&amp;amp;</td><td class="px-4 py-2 mono">&amp;#38;</td><td class="px-4 py-2 mono">&amp;#x26;</td></tr>
+                        <tr class="hover:bg-white/5"><td class="px-4 py-2">&lt;</td><td class="px-4 py-2 mono">&amp;lt;</td><td class="px-4 py-2 mono">&amp;#60;</td><td class="px-4 py-2 mono">&amp;#x3C;</td></tr>
+                        <tr class="hover:bg-white/5"><td class="px-4 py-2">&gt;</td><td class="px-4 py-2 mono">&amp;gt;</td><td class="px-4 py-2 mono">&amp;#62;</td><td class="px-4 py-2 mono">&amp;#x3E;</td></tr>
+                        <tr class="hover:bg-white/5"><td class="px-4 py-2">&quot;</td><td class="px-4 py-2 mono">&amp;quot;</td><td class="px-4 py-2 mono">&amp;#34;</td><td class="px-4 py-2 mono">&amp;#x22;</td></tr>
+                        <tr class="hover:bg-white/5"><td class="px-4 py-2">&#39;</td><td class="px-4 py-2 mono">&amp;apos;</td><td class="px-4 py-2 mono">&amp;#39;</td><td class="px-4 py-2 mono">&amp;#x27;</td></tr>
+                        <tr class="hover:bg-white/5"><td class="px-4 py-2">&copy;</td><td class="px-4 py-2 mono">&amp;copy;</td><td class="px-4 py-2 mono">&amp;#169;</td><td class="px-4 py-2 mono">&amp;#xA9;</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 px-4">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-2xl font-bold text-center mb-8">FAQ</h2>
+            <div class="space-y-4">
+                <div class="glass rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">What are HTML entities?</h3>
+                    <p class="text-gray-400 text-sm">HTML entities are special codes used to represent reserved characters in HTML. They ensure that characters like &lt;, &gt;, and &amp; display correctly instead of being interpreted as HTML tags.</p>
+                </div>
+                <div class="glass rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">Why do I need to encode text?</h3>
+                    <p class="text-gray-400 text-sm">Encoding is essential for preventing XSS (Cross-Site Scripting) attacks and ensuring user-generated content displays safely on web pages without breaking the HTML structure.</p>
+                </div>
+                <div class="glass rounded-xl p-6">
+                    <h3 class="font-semibold mb-2">What is the difference between named and numeric entities?</h3>
+                    <p class="text-gray-400 text-sm">Named entities use memorable names like &amp;amp;, while numeric entities use character codes like &amp;#38; (decimal) or &amp;#x26; (hexadecimal). All represent the same character.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 px-4">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4">Ready to streamline your workflow?</h2>
+            <p class="text-gray-400 mb-8">Get the Pro version with unlimited conversions, batch processing, and API access.</p>
+            <a href="/buy" class="inline-block px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl font-semibold btn-glow transition-all">
+                Buy Pro for $19
+            </a>
+            <p class="text-sm text-gray-500 mt-4">One-time purchase, lifetime access</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 border-t border-white/10">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <p class="text-gray-500 text-sm">© 2026 HTML Entity Encoder Pro. All rights reserved.</p>
+            <div class="flex gap-4">
+                <a href="/privacy" class="text-gray-500 hover:text-white text-sm transition-all">Privacy</a>
+                <a href="/terms" class="text-gray-500 hover:text-white text-sm transition-all">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function encode() {
+            const input = document.getElementById('input').value;
+            const output = document.getElementById('output');
+            const stats = document.getElementById('stats');
+            if (!input) return;
+
+            const encoded = input
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&apos;');
+
+            output.value = encoded;
+            stats.innerHTML = `Characters: ${input.length} → ${encoded.length} | Saved to output`;
+        }
+
+        function decode() {
+            const input = document.getElementById('input').value;
+            const output = document.getElementById('output');
+            const stats = document.getElementById('stats');
+            if (!input) return;
+
+            const textarea = document.createElement('textarea');
+            textarea.innerHTML = input;
+            const decoded = textarea.value;
+
+            output.value = decoded;
+            stats.innerHTML = `Characters: ${input.length} → ${decoded.length} | Decoded successfully`;
+        }
+
+        function clearAll() {
+            document.getElementById('input').value = '';
+            document.getElementById('output').value = '';
+            document.getElementById('stats').innerHTML = '';
+        }
+    </script>
+</body>
+</html>

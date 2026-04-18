@@ -1,0 +1,17 @@
+{
+  "name": "HTML Entity Encoder/Decoder Pro",
+  "slug": "html-entity-encoder",
+  "tagline": "Convert between plain text and HTML entities instantly. Encode special characters for web development and decode HTML entities back to readable text.",
+  "description": "Convert between plain text and HTML entities instantly. Encode special characters for web development and decode HTML entities back to readable text.",
+  "price": "9",
+  "features": [],
+  "tech_stack": "Vercel + Node.js",
+  "status": "building",
+  "vercel_url": null,
+  "github_url": null,
+  "lemonsqueezy_checkout_url": null,
+  "lemonsqueezy_product_id": null,
+  "webhook_url": null,
+  "created_cycle": null,
+  "deployed_cycle": null
+}
