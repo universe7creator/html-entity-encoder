@@ -6,12 +6,15 @@
   "price": "9",
   "features": [],
   "tech_stack": "Vercel + Node.js",
-  "status": "building",
-  "vercel_url": null,
+  "status": "live",
+  "vercel_url": "https://html-entity-encoder-3uc0t400p-madnessqws-projects.vercel.app",
   "github_url": null,
   "lemonsqueezy_checkout_url": null,
   "lemonsqueezy_product_id": null,
   "webhook_url": null,
   "created_cycle": null,
-  "deployed_cycle": null
+  "deployed_cycle": null,
+  "deployed_at": "2026-04-21T06:18:00Z",
+  "seo_optimized": true,
+  "seo_optimized_at": "2026-04-21T17:48:00Z"
 }
