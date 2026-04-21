@@ -1,10 +1,6 @@
-module.exports = async (req, res) => {
+export default function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Content-Type', 'application/json');
-  return res.status(200).json({
-    status: 'ok',
-    product: 'html-entity-encoder',
-    version: '1.0.0',
-    timestamp: new Date().toISOString()
-  });
-};
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  res.status(200).json({ status: 'healthy', service: 'html-entity-encoder', timestamp: new Date().toISOString() });
+}

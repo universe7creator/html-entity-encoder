@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Entity Encoder/Decoder Pro</title>
+  <meta name="description" content="Encode and decode HTML entities. Convert special characters to entities and back.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>* { font-family: 'Inter', sans-serif; } .mono { font-family: 'JetBrains Mono', monospace; } .gradient-text { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; } .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); } .glow { box-shadow: 0 0 40px rgba(17, 153, 142, 0.3); } @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } } .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }</style>
+</head>
+<body class="bg-[#0a0a0a] text-white min-h-screen">
+  <section class="relative overflow-hidden min-h-screen flex items-center">
+    <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/20 via-teal-900/20 to-green-900/20"></div>
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+    </div>
+    <div class="relative z-10 max-w-6xl mx-auto px-6 py-20">
+      <div class="text-center animate-fade-in">
+        <h1 class="text-6xl md:text-7xl font-bold mb-6 gradient-text">HTML Entity Encoder</h1>
+        <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">Encode and decode HTML entities instantly. Convert special characters to &amp;amp; &amp;lt; &amp;gt; format and back.</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="#demo" class="px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full font-semibold hover:scale-105 transition glow">Try Demo</a>
+          <a href="#pricing" class="px-8 py-4 glass rounded-full font-semibold hover:bg-white/10 transition">Get Pro \$19</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="demo" class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Live Demo</h2>
+      <div class="glass rounded-2xl p-6 md:p-8">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium mb-2">Input</label>
+            <textarea id="inputText" class="w-full h-40 bg-black/50 rounded-lg p-4 mono text-sm border border-gray-700 focus:border-emerald-500 focus:outline-none" placeholder="Type text or HTML entities..."></textarea>
+            <div class="flex gap-3 mt-3">
+              <button onclick="encode()" class="flex-1 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-lg font-semibold hover:opacity-90 transition">Encode</button>
+              <button onclick="decode()" class="flex-1 py-3 glass rounded-lg font-semibold hover:bg-white/10 transition">Decode</button>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-2">Output</label>
+            <textarea id="outputText" class="w-full h-40 bg-black/50 rounded-lg p-4 mono text-sm border border-gray-700" readonly></textarea>
+            <button onclick="copyResult()" class="w-full mt-3 py-3 glass rounded-lg font-semibold hover:bg-white/10 transition">Copy Result</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Features</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="glass rounded-xl p-6"><div class="text-3xl mb-4">🔣</div><h3 class="text-xl font-semibold mb-2">Encode Entities</h3><p class="text-gray-400">Convert special characters to HTML entities.</p></div>
+        <div class="glass rounded-xl p-6"><div class="text-3xl mb-4">🔄</div><h3 class="text-xl font-semibold mb-2">Decode Back</h3><p class="text-gray-400">Restore original text from encoded entities.</p></div>
+        <div class="glass rounded-xl p-6"><div class="text-3xl mb-4">📋</div><h3 class="text-xl font-semibold mb-2">One-Click Copy</h3><p class="text-gray-400">Copy results instantly to clipboard.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="py-20 px-6">
+    <div class="max-w-md mx-auto text-center">
+      <div class="glass rounded-2xl p-8 glow">
+        <h3 class="text-2xl font-bold mb-2">Pro License</h3>
+        <div class="text-5xl font-bold gradient-text mb-4">\$19</div>
+        <p class="text-gray-400 mb-6">One-time payment, lifetime access</p>
+        <ul class="text-left space-y-3 mb-8">
+          <li class="flex items-center gap-3"><span class="text-green-400">✓</span> Bulk encoding/decoding</li>
+          <li class="flex items-center gap-3"><span class="text-green-400">✓</span> URL encoding support</li>
+          <li class="flex items-center gap-3"><span class="text-green-400">✓</span> API access</li>
+          <li class="flex items-center gap-3"><span class="text-green-400">✓</span> Priority support</li>
+        </ul>
+        <a href="#" class="block w-full py-4 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-lg font-semibold hover:opacity-90 transition">Buy Now</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-8 text-center text-gray-500 text-sm"><p>&copy; 2024 HTML Entity Encoder. All rights reserved.</p></footer>
+
+  <script>
+    function encode() {
+      const input = document.getElementById('inputText').value;
+      const div = document.createElement('div');
+      div.textContent = input;
+      document.getElementById('outputText').value = div.innerHTML;
+    }
+    function decode() {
+      const input = document.getElementById('inputText').value;
+      const div = document.createElement('div');
+      div.innerHTML = input;
+      document.getElementById('outputText').value = div.textContent;
+    }
+    function copyResult() { navigator.clipboard.writeText(document.getElementById('outputText').value); }
+  </script>
+</body>
+</html>
