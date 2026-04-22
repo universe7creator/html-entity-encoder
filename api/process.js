@@ -13,6 +13,11 @@ module.exports = async (req, res) => {
       return res.status(400).json({ error: 'Missing required fields: action and text' });
     }
 
+    // Text size limit - 100KB max
+    if (text.length > 100000) {
+      return res.status(413).json({ error: 'Text too large', maxLength: 100000 });
+    }
+
     if (action === 'encode') {
       let encoded;
       switch (format) {
@@ -41,22 +46,15 @@ module.exports = async (req, res) => {
     }
 
     if (action === 'decode') {
-      const textarea = typeof document !== 'undefined' ? document.createElement('textarea') : null;
-      let decoded;
-
-      if (textarea) {
-        textarea.innerHTML = text;
-        decoded = textarea.value;
-      } else {
-        decoded = text
-          .replace(/&amp;/g, '&')
-          .replace(/&lt;/g, '<')
-          .replace(/&gt;/g, '>')
-          .replace(/&quot;/g, '"')
-          .replace(/&apos;/g, "'")
-          .replace(/&#(\d+);/g, (match, dec) => String.fromCharCode(dec))
-          .replace(/&#x([0-9A-Fa-f]+);/g, (match, hex) => String.fromCharCode(parseInt(hex, 16)));
-      }
+      // Node.js safe decode (no DOM)
+      let decoded = text
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&apos;/g, "'")
+        .replace(/&#(\d+);/g, (match, dec) => String.fromCharCode(dec))
+        .replace(/&#x([0-9A-Fa-f]+);/g, (match, hex) => String.fromCharCode(parseInt(hex, 16)));
 
       return res.status(200).json({
         result: decoded,
@@ -69,6 +67,6 @@ module.exports = async (req, res) => {
 
   } catch (error) {
     console.error('[ERROR] Process:', error);
-    return res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error', message: error.message });
   }
 };
