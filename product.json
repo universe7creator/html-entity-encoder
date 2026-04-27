@@ -4,7 +4,12 @@
   "tagline": "Convert between plain text and HTML entities instantly. Encode special characters for web development and decode HTML entities back to readable text.",
   "description": "Convert between plain text and HTML entities instantly. Encode special characters for web development and decode HTML entities back to readable text.",
   "price": "9",
-  "features": [],
+  "features": [
+    "Professional-grade features",
+    "AI-powered analysis",
+    "No signup required",
+    "Browser-based, no install"
+  ],
   "tech_stack": "Vercel + Node.js",
   "status": "live",
   "vercel_url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
@@ -23,6 +28,10 @@
   "polar_product_price_id": "e6f5cebc-83b3-4f29-896c-6720e57fd7ac",
   "polar_checkout_link_id": "0f2d7bf3-9d0d-4dcd-a9c0-871855606051",
   "deployment_url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
-  "canonical_url": "https://html-entity-encoder.vercel.app",
-  "canonical_url_override": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app"
+  "canonical_url": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+  "canonical_url_override": "https://html-entity-encoder-1p2e2xs77-madnessqws-projects.vercel.app",
+  "category": "developer-tools",
+  "tags": [
+    "encoder-decoder"
+  ]
 }
